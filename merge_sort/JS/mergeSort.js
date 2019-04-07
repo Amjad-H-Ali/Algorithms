@@ -18,9 +18,26 @@ const mergeSort = (array) => {
 
 	mergeSort(right);
 
-	console.log(left, right);
-
-
 }
 
-mergeSort([1,2,3,4,5,6]);
+const merge = (left, right) => {
+	// Push ints one at a time into this array in order from least to greatest.
+	let sortedArray = [];
+
+	let [leftIndx, rightIndx, leftLen, rightLen] = [0, 0, left.length, right.length];
+
+	while(leftIndx < leftLen && rightIndx < rightLen) {
+		if(left[leftIndx] < right[rightIndx]) {
+			sortedArray.push(left[leftIndx]);
+			leftIndx ++;
+		}
+		else {
+			sortedArray.push(right[rightIndx]);
+			rightIndx ++;
+		}
+	}
+
+	return [...sortedArray, ...left.slice(leftIndx), ...right.slice(rightIndx)];
+}
+
+console.log(merge([7, 9, 3], [6, 8, 5]));
