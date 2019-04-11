@@ -1,0 +1,1 @@
+print("Hour Glass in Python!")
