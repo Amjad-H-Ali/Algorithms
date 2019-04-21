@@ -9,8 +9,8 @@ def insertion_sort array
 		indxB4 = i - 1
 
 		# Compare value with every number behind it and stop when no numbers are greater than it.
-		# Insert the number at that position.
 		while indxB4 >= 0
+			# Insert the number at that position.
 			if value < array[indxB4]
 				array[indxB4+1] = array[indxB4]
 				array[indxB4] = value
