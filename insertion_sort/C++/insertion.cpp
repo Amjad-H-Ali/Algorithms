@@ -3,12 +3,12 @@
 using namespace std;
 
 int *insertion_sort(int *array, int length);
-
+void print(int *array, int length);
 int main() {
 
 	const int LEN = 15;
 	int array[LEN] = {9,7,6,8,3,4,90,89,65,45,64,32,12,0,0};
-	cout << insertion_sort(array, LEN) << endl;
+	print(insertion_sort(array, LEN), LEN);
 
 	return 0;
 }
@@ -34,4 +34,13 @@ int *insertion_sort(int *array, int length) {
 		}
 	}
 	return array;
+};
+void print(int *array, int length){
+	cout << '[';
+	for(int i = 0; i < length; i ++)
+		if(i == 14) 
+			cout << array[i];
+		else
+			cout << array[i] << ',';
+	cout << ']' << endl;
 };
