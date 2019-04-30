@@ -2,13 +2,12 @@
 #include <vector>
 // Adds one to an array of integers
 std::vector<int> add_one(std::vector<int> v, int indx);
-
-
+void print(std::vector<int> v);
 int main() {
 
 	std::vector<int> v {1,2,5};
 	int last_indx = v.size()-1; // Start from end of vector.
-	add_one(v, last_indx);
+	print(add_one(v, last_indx));
 
 }
 
@@ -31,3 +30,8 @@ std::vector<int> add_one(std::vector<int> v, int indx) {
 		v[indx]++;
 	return v;
 }
+
+void print(std::vector<int> v) {
+	for(auto i : v)
+		std::cout << i << std::endl;
+};
