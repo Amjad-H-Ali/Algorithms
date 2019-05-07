@@ -1,0 +1,1 @@
+puts "Mario Pyramid in Ruby!"

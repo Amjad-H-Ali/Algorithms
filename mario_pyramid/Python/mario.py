@@ -23,7 +23,7 @@ def mario_reverse_pyramid(size):
 		spaces = ""	
 		for space in range(size - len(row)):
 			spaces += " "
-			
+
 		print(spaces+row);
 		row += "#"
 
