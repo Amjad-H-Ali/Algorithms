@@ -28,6 +28,12 @@ def luhns():
 		otherNums = getOtherNums(ccNum)
 
 		print(otherNums)
+
+		sumOfOtherNums = addOtherNums(otherNums)
+
+		print(sumOfOtherNums)
+
+		# sumOfOtherNumsPlusProducts = 
 		
 	# except:
 	# 	luhns()
@@ -57,8 +63,12 @@ def addProducts(numArray):
 def getOtherNums(ccNum):
 	# Filter numbers at even indexes if if length of ccNum is odd, vice versa.
 	tuplesOfIndxAndNums = list(filter(lambda i_e: not i_e[0]%2 if len(ccNum)%2 else i_e[0]%2, enumerate(ccNum)))
-
+	# Nums from tuples.
 	return [t[1] for t in tuplesOfIndxAndNums]
+
+# Sums up array of other nums
+def addOtherNums(numArray):
+	return reduce(lambda tot, num: int(tot) + int(num), numArray)
 
 # Get Credit Card Number from User
 def promptUserForCCNum():
