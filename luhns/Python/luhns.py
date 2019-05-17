@@ -41,6 +41,10 @@ def luhns():
 
 		print(isValid)
 
+		card = whichCard(ccNum, isValid)
+
+		print(card)
+
 
 		
 	# except:
@@ -88,6 +92,22 @@ def addOtherNums(numArray):
 # Validates "checksum" number. If last digit 0, returns True, vice versa
 def validate(num):
 	return not num%10
+
+# Returns either AMEX, MASTERCARD, VISA, or INVALID
+def whichCard(ccNum, isValid):
+	if not isValid:
+		return "INVALID"
+
+	sz = len(ccNum)
+	twoDigits = ccNum[0] + ccNum[1]
+
+	if(sz == 15 and (twoDigits == '34' or twoDigits == '37')):
+		return "AMEX"
+	if(sz == 16 and twoDigits >= '51' and twoDigits <= '55'):
+		return "MASTERCARD"
+	if(sz == 13 or sz == 16 and (ccNum[0] == '4')):
+		return "VISA"
+	return "INVALID"
 
 
 # Get Credit Card Number from User
