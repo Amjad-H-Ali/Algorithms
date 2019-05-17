@@ -24,6 +24,10 @@ def luhns():
 
 		sumOfProducts = addProducts(everyOtherNumMultipliedByTwo)
 		print(sumOfProducts)
+
+		otherNums = getOtherNums(ccNum)
+
+		print(otherNums)
 		
 	# except:
 	# 	luhns()
@@ -32,10 +36,10 @@ def luhns():
 # Returns list of every other number starting from second-to-last
 def getEveryOtherNum(ccNum):
 	# If number length even, filter numbers at even indexes. If length is odd, filter numbers at odd indexes.
-	tuplesOfEveryOtherNum = list(filter(lambda i_e: i_e[0]%2 if len(ccNum)%2 else not i_e[0]%2, enumerate(ccNum)))
+	tuplesOfIndxAndNums = list(filter(lambda i_e: i_e[0]%2 if len(ccNum)%2 else not i_e[0]%2, enumerate(ccNum)))
 
 	# We have a tuple of (index, NumWeWant). return arrays of Nums we want.
-	return [t[1] for t in tuplesOfEveryOtherNum]
+	return [t[1] for t in tuplesOfIndxAndNums]
 
 # Return an array of every other number multiplied by two
 def multiplyByTwo(numArray):
@@ -44,11 +48,17 @@ def multiplyByTwo(numArray):
 # Returns the sum of the products of all the numbers in array
 def addProducts(numArray):
 	return reduce(
-		lambda tot, num: 
-			int(tot)+int(num) if len(num) is not 2 else int(tot)+int(num[0])+int(num[1]),
-		numArray
-		)
+			lambda tot, num: 
+				int(tot)+int(num) if len(num) is not 2 else int(tot)+int(num[0])+int(num[1]),
+			numArray
+		   )
 
+# Other numbers that were not multiplied by two
+def getOtherNums(ccNum):
+	# Filter numbers at even indexes if if length of ccNum is odd, vice versa.
+	tuplesOfIndxAndNums = list(filter(lambda i_e: not i_e[0]%2 if len(ccNum)%2 else i_e[0]%2, enumerate(ccNum)))
+
+	return [t[1] for t in tuplesOfIndxAndNums]
 
 # Get Credit Card Number from User
 def promptUserForCCNum():
