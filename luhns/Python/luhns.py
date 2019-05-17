@@ -33,7 +33,9 @@ def luhns():
 
 		print(sumOfOtherNums)
 
-		# sumOfOtherNumsPlusProducts = 
+		sumOfOtherNumsPlusProducts = sumOfOtherNums+sumOfProducts
+
+		print(sumOfOtherNumsPlusProducts) 
 		
 	# except:
 	# 	luhns()
@@ -47,9 +49,11 @@ def getEveryOtherNum(ccNum):
 	# We have a tuple of (index, NumWeWant). return arrays of Nums we want.
 	return [t[1] for t in tuplesOfIndxAndNums]
 
+
 # Return an array of every other number multiplied by two
 def multiplyByTwo(numArray):
 	return list(map(lambda n: str(int(n)*2), numArray))
+
 
 # Returns the sum of the products of all the numbers in array
 def addProducts(numArray):
@@ -59,6 +63,7 @@ def addProducts(numArray):
 			numArray
 		   )
 
+
 # Other numbers that were not multiplied by two
 def getOtherNums(ccNum):
 	# Filter numbers at even indexes if if length of ccNum is odd, vice versa.
@@ -66,9 +71,11 @@ def getOtherNums(ccNum):
 	# Nums from tuples.
 	return [t[1] for t in tuplesOfIndxAndNums]
 
+
 # Sums up array of other nums
 def addOtherNums(numArray):
 	return reduce(lambda tot, num: int(tot) + int(num), numArray)
+
 
 # Get Credit Card Number from User
 def promptUserForCCNum():
