@@ -8,6 +8,25 @@ console.log("Luhn's Algorithm in JS!");
 */
 
 
+
+const main = async () => {
+
+	let ccNum = await promptUserForCCNum();
+
+
+	getEverOtherDigit(ccNum);
+}
+
+
+
+const getEverOtherDigit = (numString) => {
+	let len = numString.length;
+
+	// If num is Odd length, create array of nums at odd indexes. 
+	// If Even length, make array of nums at even indexes.
+	return [...numString].filter((e, i)=> len%2 ? i%2 : !(i%2));
+}
+
 const getCCNum = () => {
 	return new Promise((resolve) => {
 		prompt.start();
@@ -17,8 +36,6 @@ const getCCNum = () => {
 		})
 	})
 		
-
-
 }
 
 const promptUserForCCNum = async () => {
@@ -38,7 +55,7 @@ const promptUserForCCNum = async () => {
 
 
 
-
+main();
 
 
 /*
