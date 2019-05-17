@@ -16,25 +16,66 @@ const main = async () => {
 	// Every other digit starting from second-to-last digit.
 	let everyOtherDigit = getEverOtherDigit(ccNum);
 
+	console.log(everyOtherDigit);
+
 	let everyOtherDigitMultipliedByTwo = multiplyByTwo(everyOtherDigit);
 
 	console.log(everyOtherDigitMultipliedByTwo);
+
+	let sumOfProducts = addProducts(everyOtherDigitMultipliedByTwo);
+
+	console.log(sumOfProducts);
+
+	let otherNums = getOtherNumbers(ccNum);
+
+	console.log(otherNums);
+
+
+	
 }
 
 
-
+// Returns an array of every other number.
 const getEverOtherDigit = (numString) => {
 	let len = numString.length;
 
 	// If num is Odd length, create array of nums at odd indexes. 
 	// If Even length, make array of nums at even indexes.
-	return [...numString].filter((e, i)=> len%2 ? i%2 : !(i%2));
+	return [...numString].filter((e, i) => len%2 ? i%2 : !(i%2));
 }
 
+const getOtherNumbers = (numString) => {
+	let len = numString.length;
+
+	// If num is Even length, create array of nums at odd indexes. 
+	// If Odd length, make array of nums at even indexes.
+	return [...numString].filter((e, i) => len%2 ? !(i%2) : i%2);
+}
+
+// Multiply Every other digit by two.
 const multiplyByTwo = (numArray) => {
 	// Multiplies every number by two.
-	return numArray.map(e => e*2);
+	// Convert back to string since coerced to int.
+	return numArray.map(e => (e*2).toString());
 }
+
+// Adds Product of multiplied numbers
+const addProducts = (numArray) => {
+	return numArray.map(e => {
+		console.log(e.length);
+		if(e.length == 2)
+			// Add two digit number
+			// Coerce string to int.
+			return (e[0]-0)+(e[1]-0);
+		else
+			return (e-0);
+		// Sum up array
+	}).reduce((total, number) => {
+		return total+number;
+	}).toString(); // Convert back to String.
+}
+
+
 
 const getCCNum = () => {
 	return new Promise((resolve) => {
