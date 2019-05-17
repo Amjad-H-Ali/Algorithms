@@ -13,8 +13,12 @@ const main = async () => {
 
 	let ccNum = await promptUserForCCNum();
 
+	// Every other digit starting from second-to-last digit.
+	let everyOtherDigit = getEverOtherDigit(ccNum);
 
-	getEverOtherDigit(ccNum);
+	let everyOtherDigitMultipliedByTwo = multiplyByTwo(everyOtherDigit);
+
+	console.log(everyOtherDigitMultipliedByTwo);
 }
 
 
@@ -25,6 +29,11 @@ const getEverOtherDigit = (numString) => {
 	// If num is Odd length, create array of nums at odd indexes. 
 	// If Even length, make array of nums at even indexes.
 	return [...numString].filter((e, i)=> len%2 ? i%2 : !(i%2));
+}
+
+const multiplyByTwo = (numArray) => {
+	// Multiplies every number by two.
+	return numArray.map(e => e*2);
 }
 
 const getCCNum = () => {
