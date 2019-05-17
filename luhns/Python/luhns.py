@@ -13,42 +13,41 @@ from functools import reduce
 # Main function
 def luhns():
 
-	# try:
+	try:
+
+		# Card Number
 		ccNum = promptUserForCCNum()
-		print(ccNum)
+
+		# Every other number starting from second-to-last number
 		everyOtherNum = getEveryOtherNum(ccNum)
-		print(everyOtherNum)
 
+		# Every other number multiplied by two
 		everyOtherNumMultipliedByTwo = multiplyByTwo(everyOtherNum) 
-		print(everyOtherNumMultipliedByTwo)
 
+		# The total of those products
 		sumOfProducts = addProducts(everyOtherNumMultipliedByTwo)
-		print(sumOfProducts)
 
+		# Numbers that were not included
 		otherNums = getOtherNums(ccNum)
 
-		print(otherNums)
-
+		# Sum of those numbers that were not included
 		sumOfOtherNums = addOtherNums(otherNums)
 
-		print(sumOfOtherNums)
-
+		# The total of those two sets of sums
 		sumOfOtherNumsPlusProducts = sumOfOtherNums+sumOfProducts
 
-		print(sumOfOtherNumsPlusProducts)
-
+		# "Checksum" validation
 		isValid = validate(sumOfOtherNumsPlusProducts)
 
-		print(isValid)
-
+		# Either AMEX, MASTERCARD, VISA, or INVALID
 		card = whichCard(ccNum, isValid)
 
 		print(card)
 
 
 		
-	# except:
-	# 	luhns()
+	except:
+		luhns()
 
 
 # Returns list of every other number starting from second-to-last
