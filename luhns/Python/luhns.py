@@ -1,5 +1,6 @@
 print("Luhn's Algorithm in Python!")
 
+from functools import reduce
 
 '''
 	1. Multiply every other digit by 2, starting with the number’s second-to-last digit, and then add those products' digits together.
@@ -20,6 +21,9 @@ def luhns():
 
 		everyOtherNumMultipliedByTwo = multiplyByTwo(everyOtherNum) 
 		print(everyOtherNumMultipliedByTwo)
+
+		sumOfProducts = addProducts(everyOtherNumMultipliedByTwo)
+		print(sumOfProducts)
 		
 	# except:
 	# 	luhns()
@@ -33,9 +37,17 @@ def getEveryOtherNum(ccNum):
 	# We have a tuple of (index, NumWeWant). return arrays of Nums we want.
 	return [t[1] for t in tuplesOfEveryOtherNum]
 
-# Multiplies Every other number by two and returns array
+# Return an array of every other number multiplied by two
 def multiplyByTwo(numArray):
-	return list(map(lambda n: int(n)*2, numArray))
+	return list(map(lambda n: str(int(n)*2), numArray))
+
+# Returns the sum of the products of all the numbers in array
+def addProducts(numArray):
+	return reduce(
+		lambda tot, num: 
+			int(tot)+int(num) if len(num) is not 2 else int(tot)+int(num[0])+int(num[1]),
+		numArray
+		)
 
 
 # Get Credit Card Number from User
