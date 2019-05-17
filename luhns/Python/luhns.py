@@ -12,13 +12,17 @@ print("Luhn's Algorithm in Python!")
 # Main function
 def luhns():
 
-	try:
+	# try:
 		ccNum = promptUserForCCNum()
 		print(ccNum)
 		everyOtherNum = getEveryOtherNum(ccNum)
 		print(everyOtherNum)
-	except:
-		luhns()
+
+		everyOtherNumMultipliedByTwo = multiplyByTwo(everyOtherNum) 
+		print(everyOtherNumMultipliedByTwo)
+		
+	# except:
+	# 	luhns()
 
 
 # Returns list of every other number starting from second-to-last
@@ -29,7 +33,9 @@ def getEveryOtherNum(ccNum):
 	# We have a tuple of (index, NumWeWant). return arrays of Nums we want.
 	return [t[1] for t in tuplesOfEveryOtherNum]
 
-
+# Multiplies Every other number by two and returns array
+def multiplyByTwo(numArray):
+	return list(map(lambda n: int(n)*2, numArray))
 
 
 # Get Credit Card Number from User
