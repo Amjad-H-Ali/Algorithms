@@ -44,7 +44,9 @@ const main = async () => {
 
 	console.log(isValidCCNum);
 
+	let card = whichCard(ccNum, isValidCCNum);
 
+	console.log(card);
 	
 }
 
@@ -114,6 +116,24 @@ const validate = (num) => {
 	// Not 0, equals true.
 	// Not 1, equals false.
 	return !(num % 10);
+}
+
+// Returns Master Card, AMEX, VISA, or INVALID 
+const whichCard = (ccNum, validity) => {
+	if(!validity) return "INVALID";
+
+	let len = ccNum.length;
+	let twoDigits = ccNum[0]+ccNum[1];
+
+	if(len == 15 && (twoDigits == 34 || twoDigits == 37))
+		return "AMEX";
+	if(len == 16 && (twoDigits >= 51 && twoDigits <= 55))
+		return "MASTERCARD";
+	if((len == 13 || len == 16) && ccNum[0] == 4)
+		return "VISA"
+
+	return "INVALID";
+
 }
 
 // Keeps Prompting user for CC Num until valid input is entered.
