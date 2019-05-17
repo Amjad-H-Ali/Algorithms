@@ -35,7 +35,13 @@ def luhns():
 
 		sumOfOtherNumsPlusProducts = sumOfOtherNums+sumOfProducts
 
-		print(sumOfOtherNumsPlusProducts) 
+		print(sumOfOtherNumsPlusProducts)
+
+		isValid = validate(sumOfOtherNumsPlusProducts)
+
+		print(isValid)
+
+
 		
 	# except:
 	# 	luhns()
@@ -54,16 +60,19 @@ def getEveryOtherNum(ccNum):
 def multiplyByTwo(numArray):
 	return list(map(lambda n: str(int(n)*2), numArray))
 
-
 # Returns the sum of the products of all the numbers in array
 def addProducts(numArray):
-	return reduce(
-			lambda tot, num: 
-				int(tot)+int(num) if len(num) is not 2 else int(tot)+int(num[0])+int(num[1]),
-			numArray
-		   )
+	# Not using reduce because it did not check if first number was two digits long.
+	sum = 0
 
+	for n in numArray:
+		if len(n) is 2:
+			sum+=(int(n[0])+int(n[1]))
+		else: sum+=int(n)
 
+	return sum
+
+'''int(tot)+int(num) if len(num) is not 2 else int(tot)+int(num[0])+int(num[1])'''
 # Other numbers that were not multiplied by two
 def getOtherNums(ccNum):
 	# Filter numbers at even indexes if if length of ccNum is odd, vice versa.
@@ -75,6 +84,10 @@ def getOtherNums(ccNum):
 # Sums up array of other nums
 def addOtherNums(numArray):
 	return reduce(lambda tot, num: int(tot) + int(num), numArray)
+
+# Validates "checksum" number. If last digit 0, returns True, vice versa
+def validate(num):
+	return not num%10
 
 
 # Get Credit Card Number from User
