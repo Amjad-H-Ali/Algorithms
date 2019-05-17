@@ -13,40 +13,40 @@ console.log("Luhn's Algorithm in JS!");
 
 const main = async () => {
 
-	let ccNum = await promptUserForCCNum();
+	try {
+		// CC number of user
+		let ccNum = await promptUserForCCNum();
 
-	// Every other digit starting from second-to-last digit.
-	let everyOtherDigit = getEverOtherDigit(ccNum);
+		// Every other digit starting from second-to-last digit.
+		let everyOtherDigit = getEverOtherDigit(ccNum);
 
-	console.log(everyOtherDigit);
+		// Products of every other number.
+		let everyOtherDigitMultipliedByTwo = multiplyByTwo(everyOtherDigit);
 
-	let everyOtherDigitMultipliedByTwo = multiplyByTwo(everyOtherDigit);
+		// Sum of Products of every other number.
+		let sumOfProducts = addProducts(everyOtherDigitMultipliedByTwo);
 
-	console.log(everyOtherDigitMultipliedByTwo);
+		// Numbers not in everyOtherDigit
+		let otherNums = getOtherNumbers(ccNum);
 
-	let sumOfProducts = addProducts(everyOtherDigitMultipliedByTwo);
+		// Sum of numbers not in everyOtherDigit
+		let sumOfOtherNumbers = addNumbers(otherNums);
 
-	console.log(sumOfProducts);
+		// Sum of products of every other number plus the other numbers.
+		let sum = sumOfProducts + sumOfOtherNumbers;
 
-	let otherNums = getOtherNumbers(ccNum);
+		// Checks if valid "checksum" 
+		let isValidCCNum = validate(sum);
 
-	console.log(otherNums);
+		// Validates which card user has.
+		let card = whichCard(ccNum, isValidCCNum);
 
-	let sumOfOtherNumbers = addNumbers(otherNums);
+		console.log(card);
+	}
+	catch(err) {
+		console.error(`Invalid Input. Please Enter Credit Card Number! ${err}`);
+	}
 
-	console.log(sumOfOtherNumbers);
-
-	let sum = sumOfProducts + sumOfOtherNumbers;
-
-	console.log(sum);
-
-	let isValidCCNum = validate(sum);
-
-	console.log(isValidCCNum);
-
-	let card = whichCard(ccNum, isValidCCNum);
-
-	console.log(card);
 	
 }
 
@@ -144,7 +144,7 @@ const promptUserForCCNum = async () => {
 
 		ccNum = await getCCNum();
 
-	} while(!(ccNum > 0)); // Ensures no char is entered or number less than 0.
+	} while(!(ccNum > 0) || ccNum.length < 2); // Ensures no char is entered or number less than 0.
 						  // Otherwise something like '1a2' < 0 evaluates to False. 
 
 	prompt.stop();
